@@ -36,6 +36,8 @@ public class GoogleTest {
         System.out.println(driver.findElement(By.xpath("//h2")).getText());
         Assert.assertEquals(driver.findElement(By.xpath("//h2")).getText(),"Hello "+name+",");
 
+        driver.findElement(By.xpath("//*[text()='Log Out']")).click();
+        Thread.sleep(2000);
 
     }
 }
