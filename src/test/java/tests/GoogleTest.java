@@ -43,6 +43,9 @@ public class GoogleTest {
         driver.findElement(By.xpath("//*[text()='Log Out']")).click();
         Thread.sleep(2000);
 
+        // Close browser
+        driver.quit();
+
     }
 
     public String getPassword(WebDriver driver) throws InterruptedException {
