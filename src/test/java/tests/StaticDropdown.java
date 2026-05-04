@@ -11,26 +11,48 @@ import java.time.Duration;
 
 public class StaticDropdown {
 
-    public void openGoogle() throws InterruptedException {
+    public static void main(String[] args) {
+        StaticDropdown obj = new StaticDropdown();
+        obj.openGoogle();
+    }
 
+    public void openGoogle() {
+
+        // Setup ChromeDriver
         WebDriverManager.chromedriver().setup();
-
         WebDriver driver = new ChromeDriver();
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        try {
+            // Maximize window
+            driver.manage().window().maximize();
 
-        driver.get("https://rahulshettyacademy.com/locatorspractice/");
+            // Implicit wait
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        WebElement staticDropdown = driver.findElement(By.xpath("//select[@name='ctl00$mainContent$DropDownListCurrency']"));
+            // Open URL
+            driver.get("https://rahulshettyacademy.com/locatorspractice/");
 
-        Select dropdown = new Select(staticDropdown);
+            // Locate dropdown
+            WebElement staticDropdown = driver.findElement(
+                    By.xpath("//select[@name='ctl00$mainContent$DropDownListCurrency']")
+            );
 
-        dropdown.selectByIndex(2);
-        System.out.println(dropdown.getFirstSelectedOption().getText());
+            // Select dropdown
+            Select dropdown = new Select(staticDropdown);
 
-        dropdown.selectByValue("INR");
-        System.out.println(dropdown.getFirstSelectedOption().getText());
+            // Select by index
+            dropdown.selectByIndex(2);
+            System.out.println("Selected by index: " +
+                    dropdown.getFirstSelectedOption().getText());
 
-        driver.quit();
+            // Select by value
+            dropdown.selectByValue("INR");
+            System.out.println("Selected by value: " +
+                    dropdown.getFirstSelectedOption().getText());
+
+        } finally {
+            // Close browser
+            driver.quit();
+        }
     }
 }
