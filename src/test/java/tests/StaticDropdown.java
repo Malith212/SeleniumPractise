@@ -56,5 +56,3 @@ public class StaticDropdown {
         }
     }
 }
-
-//test
